@@ -1,0 +1,494 @@
+ES6 - babel - es5
+es also called as ecmascript
+
+
+# ForEach 
+
+
+
+Array helper methods 
+
+- forEach 
+- map 
+- filter
+- find 
+- every 
+- some
+- reduce 
+
+# FILTER HELPER
+
+syntax  : 
+
+var newvalues = arr.filter(x => {return x.type == 'fruit'});
+
+**using nested filters ** 
+
+var post = {id : 4, title : 'new post'};
+
+var comments = [
+ {  poa
+];
+
+function commentsForPost(post,comments){
+	return comments.filter(function(comment){
+		return comment.postId === post.id;
+	});
+}
+
+
+
+
+
+# FIND HELPER
+
+NOTE : difference between find and filter method is that fild stops 
+after finding the first result , whereas filter method returns all the matching values
+
+syntax: 
+
+
+var userdetails = [ 
+  {name:'alex', designation:'assistant'},
+  {name:'alex', designation:'HR'},
+  {name:'thomas' , designation: 'assitant'}
+]
+
+var firstfound = userdetails.find(
+  x=>{
+     return x.name ==='alex';
+  });
+  
+  
+var allfound = userdetails.filter(
+  x=>{
+     return x.name ==='alex';
+  });
+  
+
+
+
+IMPORANT THING LEARNED : 
+
+var criteria = {height:25} 
+
+var keyvalue = Object.keys(criteria)[0];
+
+// here this keyvalue is a string so the following below code wont work 
+
+console.log(criteria.keyvalue); // invalid syntax
+
+console.log(criteria[keyvalue]); // valid syntax
+
+console.log(criteria['height']); // correct syntax 
+
+console.log(criteria.height); // correct syntax 
+
+
+
+
+
+# EVERY AND SOME HELPER 
+
+var computers  = [
+ 	{ name : 'apple' , ram : 24},
+	{ name : 'compaq', ram : 4},
+	{name : 'acer' , ram : 32}
+];
+
+var allcomputerscanrun = true; 
+var onlysomecanrun = false; 
+
+allcomputerscanrun = computers.every(x=>{ return x.ram >16;});
+onlysomecanrun = computers.some(x=>{return x.ram > 16;})
+
+
+if(onlysomecanrun)
+console.log('All machines can run the program' );
+
+if(onlysomecanrun)
+console.log('Only some can run' );
+
+
+#USING FUNCTION PROTOTYPE WITH EVERY AND SOME 
+
+  
+function Field(value){
+  this.value = value; 
+}
+
+Field.prototype.validate = function(){
+  return this.value.length > 0;
+}
+
+var username = new Field("2cool");
+
+var password = new Field("my_password");
+
+var birthdate = new Field("10/10/10");
+
+
+var fields = [username, password, birthdate];
+
+console.log(username.validate());
+
+console.log(password.validate());
+
+// instead of validating again and again 
+
+if(fields.every(field=>{
+  return field.validate();
+})) console.log('all fields are valid');
+
+
+
+# REDUCE HELPER ( IMPORTANT !!!)
+var numbers = [10,20,30];
+var sum  = 0; 
+
+var total = numbers.reduce((sum,number)=>{
+	 return sum + number; 
+
+},0);
+
+
+
+# let , const , var 
+
+
+
+
+# ENHANCED OBJECT LITERALS
+
+syntactic changes in languages to make the languauge easier to understand 
+
+function createBookShop(inventory){
+return {
+inventory : inventory , 
+invorntoryValue: function(){
+
+},
+priveForTitle
+
+
+
+
+
+
+** NOTE : if we have a key and value that have identical names then we can omit the value;
+
+for example 
+
+
+function saveFile(url,data){
+	$.ajax({method:'POST',url : url , data : data});
+}
+
+// the above function can be refactored to 
+
+
+function saveFile(url,data){
+	$.ajax({method:'POST',url, data});
+}
+
+// here we have omitted the value from the key value pair
+
+
+
+Another way to refactor : 
+
+function value(gaming){
+	return {
+			PGIrating: function(){
+			// PGIrating(){ // refactor to this 
+					return "13+";
+				}
+		 }
+};
+
+
+#DEFAULT FUNCTION ARGUMENTS 
+
+function request(url , method='GET'){
+	return method;
+}
+
+request('google.com');
+request('google.com','POST');
+request('google.com',null); // doesnt use the default argument 
+
+
+
+# DESTRUCTURING 
+
+
+ const var ={
+	name: "tanveer", 
+	type : "male"
+};
+
+// before es6 approach : 
+
+const name = var.name;
+const type = var.type ;
+
+// es6 approach 
+
+const { name, type } = var;
+
+
+// DESTRUCTURING ARGUMENT OBJECTS 
+
+
+
+// DESTRUCTURING ARRAY 
+
+const companies  = ['google','uber', 'hp'];
+
+const [name,name2,name3,name4] = companies; // name4 is undefined , no error generated 
+
+
+
+
+const {name} = companies;// error  , no name property found 
+
+const {length} = companies ; // retreives the length 
+
+
+const [name1,name2,...rest] = companies; 
+
+
+
+// DESTRUCTURING ARRAYS AND OBJECTS AT THE SAME TIME
+
+const companies  = {
+{name : 'google' , location : 'mountain view'},
+{name : 'facebook ' , location : 'menlo park'},
+{name : 'uber ' , location : 'san fransisco'},
+};
+
+const [{location}] = companies; 
+console.log(companies); // output: Mountain View
+
+
+const Google = {
+	locations : ['mountain view', 'new york', 'london']
+};
+
+const {locations : [location ] } = Google;
+
+location ; 
+
+
+
+// more on destructuring  : 
+
+const points = [
+	[4,5],
+	[10,1],
+	[0,40]
+];
+
+// if we want to chnage the structure  we can use the help es6 syntax
+
+
+
+let items = points.map((pair)=>{
+  const [x,y] = pair;
+  return {x,y};
+})
+
+
+/// ANOTHER SIMPLE WAY TO DO THIS IS AS FOLLOWS
+
+let items = points.map(([x,y])=>{return {x,y}});
+
+
+#CLASSES 
+
+//using function contructors we can create class 
+
+function Car(options){
+	this.title = options.title;
+}
+
+Car.prototype.drive = ()=>{ return 'vroom'};
+
+
+const car = new Car({title:'honda'});
+
+car.drive();  // output : vroom 
+
+console.log(car); // output : {"title": "honda"};
+
+
+
+// PROTOTYPE INHERITANCE 
+
+
+function Toyota (options) {
+	 this.color = options.color; 
+} ; 
+
+
+const toyota = new Toyota({color:'red', title:'toyota'};
+
+console.log(toyota) ; // this prints {"color": "red"};
+
+
+// clearly the title is not visiable in the former 
+
+// to fix this we can use prototypal inheritance 
+
+
+function Toyota(options){
+	Car.call(this,options); // inheritance
+	this.color = options.color; 
+} 
+
+Toyota.prototype.honk = function(){
+	return "honk" ;
+}
+
+
+const toyota2 = new Toyota({color:'red', title:'toyota'};
+
+
+toyota2.drive(); // inherited from Car 
+
+
+toyota2.honk(); // outputs : "honk";
+
+
+// REFACTORING THE ABOVE UNNECESSARY STUFF USING ES6 SYNTAX 
+// in es6 method we donot need to call unnecessary prototype method
+
+class Car{
+	constructor({title}){
+		this.title = title; 
+	}
+	drive(){
+		return 'vroom';
+	}
+
+}
+
+const car = new Car({title : 'toyota'}); 
+car; 
+car.drive(); 
+
+
+
+/*/ EXTENDING BEHAVIOR OF CLASSES
+
+class Toyota extends Car {
+	constructor({color}){
+		super();// this calls the constructor for the superclass 
+		this.color = color; 
+	}
+	honk(){
+		return 'honk';
+	}
+}
+
+const toyota = new Toyota({color:'red',title:'toyota'});
+
+toyota.honk(); 
+
+
+
+# GENERATORS 
+
+// use of FOROF loops : 
+
+const colors = ['red' , 'green' , 'blue'];
+
+for(let color of colours){
+	console.log(color);
+}
+
+/*/ INTRODUCTION TO GENERATORS 
+
+// Generator is a function which we can enter and exit anytime. unlike 
+functions which we can enter and exit only one time
+
+
+function * shopping(){
+	const stuffFromStore = yield 'cash';
+	return stuffFromStore;
+}
+
+
+const gen = shopping(); 
+gen.next(); 
+gen.next('groceries');
+
+
+// understanding the generators more 
+
+every time we call the yield statement we need to call the next();
+
+
+function * shopping(){
+
+	const stuffFromStore = yield 'cash' ;  
+	const stuffFromLaundry = yield 'laundry';
+	
+	return [stuffFromStore, stuffFromLaundry];
+}
+
+
+const gen = shopping(); // nothing happens here
+
+console.log(gen.next());
+
+console.log(gen.next('groceries'));
+
+console.log(gen.next('clothes'));
+
+
+/// THE BIG REVEAL ON ES6 GENERATORS 
+
+function * colors(){
+uield 'red';
+yield 'blue';
+yield 'green';
+}
+
+const mycolors = [];
+for(let color of colors()){
+	mycolors.push(color);
+}
+
+// another practical approach 
+
+
+const engineeringteam = {
+	size :3, 
+	department : 'engieering',
+	lead : 'jill', 
+	manager: 'alex',
+	engieering : 'Dave'
+};
+
+
+function * TeamIterator(team){
+	yield team.lead; 
+	yield team.manager ; 
+	yield team.engineer; 
+}
+
+const names = [];
+
+for (let name of TeamInterator(engineeringteam)){
+	names.push(name);
+}
+console.log(names);
+
+// DELEGATION OF GENERATORS 
+
+
+
+
+
+

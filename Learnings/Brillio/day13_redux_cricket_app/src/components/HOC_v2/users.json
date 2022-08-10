@@ -1,0 +1,14 @@
+[
+  {
+    "name": "shami",
+    "type": "bowler"
+  },
+  {
+    "name": "dhoni",
+    "type": "wicket keeper"
+  },
+  {
+    "name": "virat",
+    "type": "batsman"
+  }
+]

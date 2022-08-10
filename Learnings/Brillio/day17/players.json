@@ -1,0 +1,23 @@
+[
+   {
+      "id": "1",
+      "name": "Dhawan",
+      "category": "Batsman",
+      "country": "India",
+      "image": "https://www.cricbuzz.com/a/img/v1/152x152/i1/c170660/shikhar-dhawan.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Virat",
+      "category": "Batsman",
+      "country": "India",
+      "image": "https://www.cricbuzz.com/a/img/v1/152x152/i1/c170661/virat-kohli.jpg"
+    },
+    {
+      "id": "1412",
+      "name": "Tanveer Ahmed",
+      "country": "India",
+      "category": "all rounder",
+      "image": "https://w7.pngwing.com/pngs/867/711/png-transparent-up-up-animation-cartoon-characters-thumbnail.png"
+    }
+  ]

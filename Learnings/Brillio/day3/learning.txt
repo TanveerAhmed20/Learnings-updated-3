@@ -1,0 +1,19 @@
+wowrking with window ibject 
+window objetc 
+- unique positona th the top of the js object
+
+alert(message) 
+
+window.alert()
+
+window.confirm();
+
+
+var input  = windows.prompt ();
+
+open("url","windowname" [, "windowFeatures"])
+
+newwin = =window.open(
+
+
+event handl

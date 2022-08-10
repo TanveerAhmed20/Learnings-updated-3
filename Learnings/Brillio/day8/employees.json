@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "Shankar",
+        "salary": 39999.99,
+        "currency": "INR"
+    },
+    {
+        "id": 2,
+        "name": "John",
+        "salary": 8000.0,
+        "currency": "USD"
+    },
+    {
+        "id": 3,
+        "name": "Adrian",
+        "salary": 13000.0,
+        "currency": "EUR"
+    },
+    {
+        "id": 4,
+        "name": "Brian",
+        "salary": 6500.0,
+        "currency": "GBP"
+    },
+    {
+        "id": 5,
+        "name": "Satoshi",
+        "salary": 100000.0,
+        "currency": "JPY"
+    },
+    {
+        "id": 6,
+        "name": "Vitalik",
+        "salary": 200000.0,
+        "currency": "RR"
+    },
+    {
+        "id": 7,
+        "name": "Xiao",
+        "salary": 19999.99,
+        "currency": "SGD"
+    },
+    {
+        "id": 8,
+        "name": "Jiaji",
+        "salary": 25000.0,
+        "currency": "MYR"
+    },
+    {
+        "id": 9,
+        "name": "Riddhima",
+        "salary": 32000.0,
+        "currency": "INR"
+    },
+    {
+        "id": 10,
+        "name": "Raul",
+        "salary": 12000.0,
+        "currency": "USD"
+    },
+    {
+        "id": 11,
+        "name": "Juan",
+        "salary": 15200.0,
+        "currency": "EUR"
+    },
+    {
+        "id": 12,
+        "name": "Catherine",
+        "salary": 9300.0,
+        "currency": "GBP"
+    },
+    {
+        "id": 13,
+        "name": "Nakamura",
+        "salary": 210000.0,
+        "currency": "JPY"
+    },
+    {
+        "id": 14,
+        "name": "Oleksandr",
+        "salary": 48000.0,
+        "currency": "RR"
+    },
+    {
+        "id": 15,
+        "name": "Benjamin",
+        "salary": 24999.0,
+        "currency": "SGD"
+    },
+    {
+        "id": 16,
+        "name": "Hussain",
+        "salary": 34000.0,
+        "currency": "MYR"
+    }
+]

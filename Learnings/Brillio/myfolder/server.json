@@ -1,0 +1,25 @@
+{
+  "players": [
+    {
+      "id": "1",
+      "name": "Tanveer Ahmed",
+      "category": "",
+      "country": "India",
+      "image": ""
+    },
+    {
+      "id": "3",
+      "name": "Russell",
+      "category": "all rounder",
+      "country": "Venezuela",
+      "image": "https://w7.pngwing.com/pngs/867/711/png-transparent-up-up-animation-cartoon-characters-thumbnail.png"
+    },
+    {
+      "id": "1412",
+      "name": "Russell",
+      "country": "Venezuela",
+      "category": "all rounder",
+      "image": "https://www.cricbuzz.com/a/img/v1/152x152/i1/c170661/virat-kohli.jpg"
+    }
+  ]
+}

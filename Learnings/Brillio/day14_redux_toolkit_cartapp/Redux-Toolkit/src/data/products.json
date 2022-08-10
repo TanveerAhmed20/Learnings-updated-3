@@ -1,0 +1,24 @@
+[
+	{
+	  "id": 1,
+	  "name": "Eye Glasses",
+	  "image": "https://images.unsplash.com/photo-1512099053734-e6767b535838?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Z2xhc3Nlc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+	  "price": 40.99,
+	  "description": "Gives you the miracle of vision."
+	},
+	{
+	  "id": 2,
+	  "name": "Wig",
+	  "image": "https://m.media-amazon.com/images/I/61eHPrbJbvL._AC_UY879_.jpg",
+	  "price": 25.50,
+	  "description": "For people that have a shine on their head."
+	},
+	{
+	  "id": 3,
+	  "name": "T Shirt",
+	  "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+	  "price": 49.99,
+	  "description": "Nice quality T-Shirt"
+	}
+  ]
+  

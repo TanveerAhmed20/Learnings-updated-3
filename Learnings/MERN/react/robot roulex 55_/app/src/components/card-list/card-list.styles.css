@@ -1,0 +1,15 @@
+.card-list {
+    width: 85vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
+  
+  
+  .card-container:hover {
+    transform: scale(1.05);
+    box-shadow:0px 0px 5px 5px rgb(0, 238, 255);
+
+  }
+  

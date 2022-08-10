@@ -1,0 +1,52 @@
+pwd : present working directory 
+
+ls : content of current directory 
+
+cd : change directory
+
+
+working with SSH keys  : 
+
+SSH keys are necessary to connect with the github server
+
+There are two types of ssh keys , one is public and one is private: 
+
+public key is denoted by file_name.pub and privatekey is denoted by file_name
+
+* To check is SSH key was already created : 
+
+open git bash 
+
+ls -al ~/.ssh   :::: this will list all the files realted to .ssh
+ 
+
+NOte : If you don't have a supported public and private key pair, 
+or don't wish to use any that are available,
+generate a new SSH key.
+
+
+If no ssh key was found we generate a new key using : 
+
+ssh-keygen -t rsa -b 4096 -C "tanveer.ahmed@brillio.com"
+
+This above code will promt a  messasge to enter file name : 
+enter the name for the ssh key : example : testkey
+
+You will be asked to input a pass phrase , ignore this for now .
+
+
+
+two files will be generated after the process of generation is done : 
+
+testkey.pub and testkey 
+
+
+You put the public key in new ssh key in settings of the github
+
+
+The private key must be inserted in the ssh-agent via git-bash cli
+
+steps for ssh private key : 
+
+eval "$(ssh-agent -s)"
+

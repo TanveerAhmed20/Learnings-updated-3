@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Finder</title>
+    <script src="question.js" async></script>
+</head>
+<body>
+    <div>
+        <label for="inp_1">Starting Date</label>
+        <input type="text" placeholder="MM/DD/YYYY" id ="inp_1">
+        <br>
+        <label for="inp_2">Ending Date</label>
+        <input type="text" id="inp_2" placeholder="MM/DD/YYYY" >
+        <br>
+        <input type="button" value="Find" onclick = "onClickfunc()">
+        <p id ="result"></p>
+    </div>
+
+    <script>
+const solve = (start,end) => {
+    let datetime_a = new Date(start+" 00:00:00");
+    let datetime_b = new Date(end+" 00:00:00");
+    const time = datetime_b.getTime()- datetime_a.getTime();
+    if(time<0) {
+        return null;
+    }
+    let millisec_in_day = 1000 * 60 * 60 * 24;
+    let days = time/millisec_in_day;
+    console.log(`number of days : ${days}`);
+    return days;
+};
+
+const onClickfunc = () =>{
+    var a = document.getElementById('inp_1').value; 
+    var b = document.getElementById('inp_2').value;
+    if(a==="" && b === ""){
+    alert('Please enter valid dates');
+    return;
+    }
+    var result = document.getElementById('result');
+    var output = solve(a.value,b.value);
+    if(output!==null) 
+    result.innerHTML = `Result :${output} days`;
+    else alert(' start date and end date invalid');
+
+}
+    </script>
+</body>
+</html>

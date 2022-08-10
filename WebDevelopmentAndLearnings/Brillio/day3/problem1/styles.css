@@ -1,0 +1,13 @@
+.container {
+    max-width: 80%;
+    text-align: left;
+    padding: 10px;
+}
+.border
+{
+
+    border : 1px solid black;
+}
+table, th, td {
+    border:1px solid black;
+  }

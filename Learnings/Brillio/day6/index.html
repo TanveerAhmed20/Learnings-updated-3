@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <a id ="id_1">    <input type="button" value="GO"> </a>
+
+    <br>
+    <input type="button" value="usingURLConstructor" onclick="usingURLConstructor()"><br>
+    <input type="button" value="usingRegexCheckProtocol" onclick="usingRegexCheckProtocol()"><br>
+    <input type="button" value="usingRegex" onclick="usingRegex()"><br>
+    <input type="button" value="usingInputElement" onclick="usingInputElement()"><br>
+    <input type="button" value="usingAnchorTag" onclick="usingAnchorTag()"><br>
+    
+    
+    <script>
+    
+
+        const search = encodeURIComponent("Bishwaraj Paul");
+        const url = new URL(`https://www.google.com/search?q=${search}`);
+        document.getElementById('id_1').href = url;
+        console.log(url.host);
+        console.log(window.location.host);
+        
+        const urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+    '((([a-z\\d]([a-z\\d-][a-z\\d]))\\.)+[a-z]{2,}|'+ // validate domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+])'+ // validate port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+
+     let urls = [
+        "invalidURL",
+        "htt//google",
+        "www.google.com",  
+        "https://www.google.com",   
+        "https://www.google.com/javascript/"
+    ];
+
+    function usingAnchorTag(){
+        console.log("using anchor tag");
+	    
+        for (let url of urls){
+  	        var a  = document.createElement('a');
+   	        a.href = url;
+            console.log("a:  "+  a.host);
+            console.log(window.location.host);
+   	        console.log("URL:  "+url+"   is :  "+(a.host && a.host != window.location.host));
+        }
+    }
+ 
+    function usingInputElement(){
+        console.log("using INPUT element");
+        var i = document.createElement('input');
+        i.setAttribute('type', 'url');
+        
+        for (let url of urls){
+          i.setAttribute('value', url);
+           console.log("URL:"+url+" "+ i.checkValidity());
+
+        }
+    }
+    function usingURLConstructor(){
+        console.log( "Using URL constructor" );
+        for (let url of urls){
+            try{
+                new URL(url);
+                console.log(url+"  "+true);
+            }
+            catch(e){
+                console.log(url+"  "+false);
+            }
+
+        }
+
+    }
+
+    const isUrl = string => {
+      var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+    '(\\#[-a-z\\d_]*)?$','i');
+    return (string.match(urlPattern)===null);
+    }
+
+    function usingRegex(){
+        console.log("using Regex tag");
+
+        for (let url of urls){
+            // console.log(url.match(urlPattern));
+            if(isUrl(url)){
+                console.log(url +" " + false);
+            }
+            else
+  	        console.log(url +" " + true);
+        }
+
+    }
+    
+    function usingRegexCheckProtocol(){
+        console.log("using Regex Check Protocol");
+	    
+        for (let url of urls){
+            console.log("URL: "+url);
+  	       console.log(/^[^:]+(?=:\/\/)/.test(url));
+        }
+
+    }
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+body {
+  margin: 0;
+  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.container{
+
+  max-width: 80%;
+  margin:auto;
+  text-align: center;
+ 
+}
+table,tr,td,th{
+border: 1px solid black;
+}

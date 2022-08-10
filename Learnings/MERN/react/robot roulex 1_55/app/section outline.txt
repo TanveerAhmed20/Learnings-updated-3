@@ -1,0 +1,3 @@
+This section consist of learnings from slide 1-55 of complete react developer in 2022 by andrei neagoie
+
+This part contains only the understanding of class based components. 

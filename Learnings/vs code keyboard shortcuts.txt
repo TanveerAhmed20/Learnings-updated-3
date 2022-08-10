@@ -1,0 +1,3 @@
+ctrl + f2 : edit multi occurances in files
+ctrl+k >v : open md file previewer
+ctrl+/ : comment
