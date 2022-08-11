@@ -5,7 +5,7 @@ import { fetchCourse, selectCourse } from "../../store/courses/coursesSlice";
 import "./ViewCourse.scss";
 const ViewCourse = () => {
   const course = useSelector(selectCourse);
-  const dispatch = useDispatch<any>();
+  const dispatch:any = useDispatch();
   const { id } = useParams(); // other approach would be to use useParams() || ''  or useParams() ?? ''  - nullish coalesce operator ( ??) 
 
   useEffect(() => {
@@ -16,8 +16,8 @@ const ViewCourse = () => {
 // ?? returns the right value if the left side is null or undefined 
   useEffect(() => {}, [course]);
 
-  console.log(id);
-  console.log(course);
+  // console.log(id);
+  // console.log(course);
   return (
     <div className="table-container">
          <div className="course-head">

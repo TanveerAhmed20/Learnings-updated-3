@@ -9,7 +9,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 
 //
@@ -89,3 +90,7 @@ export const signInAuthUserWithEmailAndPassword = async (email,password)=>{
 export const signOutUser = async ()=> await signOut(auth);
 
 // note : auth keeps tracking of who is signedIn right now
+
+export const onAuthStateChangedListener = (callback)=>{
+  return onAuthStateChanged(auth,callback);
+}

@@ -21,7 +21,7 @@ const SignUpForm = () => {
 
   // user context
 
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext); not required as i am using onAuthStateChanged
 
   const handleChange = (event) => {
     setFormFields({ ...formFields, [event.target.name]: event.target.value });
@@ -38,9 +38,9 @@ const SignUpForm = () => {
         email,
         password
       );
-
+      onClickResetHandler();
       //setting userauth object into the usercontext
-      setCurrentUser(user);
+      // setCurrentUser(user); // not required as i am using onCHangeAuth
 
       console.log("SIGN_UP_USER", user);
       // once the user is created , u generate the doc

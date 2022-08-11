@@ -1,7 +1,7 @@
 import React, { useState,useContext} from "react"; // useEffect Required for redirect
 import { getRedirectResult } from "firebase/auth"; // required for rediretc
 import "./sign-in-form.styles.scss";
-import { UserContext } from "../../contexts/user.context";
+// import { UserContext } from "../../contexts/user.context";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import {
@@ -20,7 +20,7 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,10 +30,10 @@ const SignInForm = () => {
       );
 
       // update sign-in button to signout if successful
-      setCurrentUser(response);
+      // setCurrentUser(response); not required as i am using onAuthStateChanged
 
-      alert('Successfully signed In')
-      console.log("SIGN_IN_RESPONSE:", response);
+      // alert('Successfully signed In')
+      // console.log("SIGN_IN_RESPONSE:", response);
     } catch (e) {
       switch(e.code){
         case 'auth/user-not-found':
@@ -58,9 +58,10 @@ const SignInForm = () => {
   const logGoogleUser = async () => {
     console.log("button clicked");
     const { user } = await signInWithGooglePopup();
+    // setCurrentUser(user); not required as i am using onAuthStateChanged
     console.log("USER\n", user);
-    const userDOC = await createUserDocumentFromAuth(user); // this is async operation so we set it to await
-    console.log("DOC\n", userDOC);
+    // const userDOC = await createUserDocumentFromAuth(user); // this is async operation so we set it to await // commented this line , as it has been taken care in onAuthStateChanged
+    // console.log("DOC\n", userDOC);
   };
 
   // const logGoogleRedirectUser = async () => {
