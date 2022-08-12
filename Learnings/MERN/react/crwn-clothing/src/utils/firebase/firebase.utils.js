@@ -92,5 +92,5 @@ export const signOutUser = async ()=> await signOut(auth);
 // note : auth keeps tracking of who is signedIn right now
 
 export const onAuthStateChangedListener = (callback)=>{
-  return onAuthStateChanged(auth,callback);
+  return onAuthStateChanged(auth,callback,errorCallback,completedCallback);
 }
