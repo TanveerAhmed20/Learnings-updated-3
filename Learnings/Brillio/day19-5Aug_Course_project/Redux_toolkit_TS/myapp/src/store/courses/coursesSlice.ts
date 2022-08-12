@@ -1,5 +1,6 @@
 import { CourseType } from './../../types/types';
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import {
   getCourses,
   getCourse,
@@ -11,44 +12,49 @@ import {
 // interface CourseState {
 //     loading: 'idle' | 'pending' | 'succeeded' | 'failed'
 // }
+import {RootState} from '../index'
+interface IState {
+ courses: CourseType[];
+ courseFound: CourseType;
+ loading: string;
+}
 const initialState = {
   courses: [],
   courseFound: {},
   loading: "idle",
-};
-// } as CourseState;
+} as IState;
 
 const courseSlice = createSlice({
-  name: "course",
+  name: "courses",
   initialState,
   reducers: {
   },
-  extraReducers: (builder: any) => {
+  extraReducers: (builder:ActionReducerMapBuilder<IState>) => {
     builder
-      .addCase(fetchCourses.fulfilled, (state: any, action: any) => {
+      .addCase(fetchCourses.fulfilled, (state, action) => {
         state.courses = action.payload;
         state.loading = "succeeded";
       })
-      .addCase(fetchCourse.fulfilled, (state: any, action: any) => {
+      .addCase(fetchCourse.fulfilled, (state, action) => {
         state.courseFound = action.payload;
         console.log(state.courseFound);
       })
-        .addCase(deleteCourseThunk.fulfilled,(state:any,action:any)=>{
+        .addCase(deleteCourseThunk.fulfilled,(state,action)=>{
             state.courses = action.payload;
             console.log('case delete builder called');
         })
-        .addCase(editCourseThunk.fulfilled,(state:any,action:any)=>{
+        .addCase(editCourseThunk.fulfilled,(state,action)=>{
             console.log('edit thunk called');
             state.courses = action.payload;
 
         })
-        .addCase(addCourseThunk.fulfilled,(state:any,action:any)=>{
+        .addCase(addCourseThunk.fulfilled,(state,action)=>{
             console.log('add thunk called');
             console.log(action.payload);
             state.courses.push(action.payload);
             alert('cousrse Added successfully');
         })
-        .addCase(addCourseThunk.rejected,(state:any,action:any)=>{
+        .addCase(addCourseThunk.rejected,(state,action)=>{
             alert('cousrse Adding unsuccessful as object already exists');
         })
   },
@@ -57,9 +63,10 @@ const courseSlice = createSlice({
 // named exports
 
 // export const { addToCourse } = courseSlice.actions;
-export const selectCourses = (state: any) => state.courses.courses;
-export const selectCourse = (state: any) => state.courses.courseFound;
-export const selectLoading = (state: any) => state.courses.loading;
+export const selectCourses = (state:RootState) =>state.courses.courses;
+
+export const selectCourse = (state: RootState) => state.courses.courseFound;
+export const selectLoading = (state: RootState) => state.courses.loading;
 
 export const fetchCourses = createAsyncThunk(
   "course/fetchCourses",
