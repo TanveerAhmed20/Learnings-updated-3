@@ -13,11 +13,58 @@ const app = express();
 const port = process.env.PORT || 3005;
 
 app.use(cors()); // middleware
-app.use(express.json()); // middleware
+
 //  express.json() automatically parse incoming json into an js object for our use
+
+// app.use((req,res,next)=>{
+//   console.log("inside custom middleware")
+//   console.log(req.method,req.path);
+//   console.log("outside custom middleware")
+//   if(req.method =='GET')
+//   {
+//     res.send('get requests are disabled')
+//   }
+//   else
+//   next();
+// })
+
+//Goal : setup middleware for maintenance mode
+//1 register a new middleware function 
+// 2 sed back a maintainence message with a 503 status code 
+//3 try your requests from the server and confirm status /message show s
+
+// app.use((req,res,next)=>{
+//   res.status(503).send('server under maintenance')
+// })
+
+
+app.use(express.json()); // middleware
 app.use(userRouter);
 app.use(taskRouter);
+
+//
 
 app.listen(port, () => {
   console.log("server listning on port " + port);
 });
+
+// const jwt = require('jsonwebtoken')
+// const myfunction = async ()=>{
+//   const token = jwt.sign({_id:'abcd'},'secretkey',{expiresIn:'5 sec'})
+//   //sign ( unique identifier, secret )
+//   //secret: used sign the token to make sure that the jwt hasn't been tampered with anything
+//   console.log(token)
+
+//   // VERIFYING THE JWT TOKEN 
+//   try{
+//     const data = jwt.verify(token,'secretkey');
+
+//     console.log(data);
+
+//     }
+//     catch(err){
+//       console.log("message")
+//       console.log(err.message)
+//     }
+//   }
+// myfunction();

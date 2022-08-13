@@ -87,3 +87,27 @@ User.findByIdAndUpdate('',{age"1})
 .catch(err => { console.log(err) });
 
 ```
+
+
+Note : findBYId returns the document  reference and doesn't create a new document
+
+
+## JSON WEB TOKENS : 
+
+A json web token consist of three things : 
+`base64_encoded_JSON_string.base64_encoded_JSON_string.base64_encoded_JSON_string`
+1. header information 
+2. payload or the data 
+3. secretkey
+
+```javascript
+  const token= jwt.sign({_id:'abc123'},'thisismynewcourse')
+```
+
+Good visuallizer for Base64 decoding 
+[Link](https://www.base64decode.org/)
+
+
+### Note:  module.exports == default export and export = named export
+[Link](https://www.geeksforgeeks.org/difference-between-module-exports-and-exports-in-node-js/)
+
