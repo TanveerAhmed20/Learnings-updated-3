@@ -54,8 +54,25 @@ router.patch("/users/:id", async (req, res) => {
   if (!isValidOperation) return res.status(400).send("invalid update request");
 
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body);
-    if (!user) return res.status(404).send("user not found");
+    // const user = await User.findByIdAndUpdate(req.params.id, req.body);
+    // if (!user) return res.status(404).send("user not found");
+
+    // Note: Note :  findbyIdAndUpdate() bypassed mongoose schema , it directly updates into the database.
+
+    //So we we try to do something like pre middlewares it won't give any console.log statements
+
+    const user = await User.findById(req.params.id);
+    if (!user || user == null) {
+      return res.status(404).send("user not found");
+    }
+
+    updates.forEach((update) => {
+      // accessing property dynamically
+      user[update] = req.body[update];
+    });
+
+    await user.save();
+
     res.send(user);
   } catch (err) {
     res.status(400).send(err);

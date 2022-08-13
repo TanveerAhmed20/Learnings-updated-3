@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcryptjs = require('bcryptjs')
 
-const User = mongoose.model ('User',{
+
+const userSchema = new mongoose.Schema({
     name:{
         type: String,
         trim:true,
@@ -37,7 +39,21 @@ const User = mongoose.model ('User',{
             }
         }
     }
-});
+},{versionKey:false})
 
+
+
+// Writing a middleware 
+// post : after , pre : before schema model is created . 
+userSchema.pre('save',async function(next){
+    const user = this; // gives a reference to the document before it's save 
+    if(user.isModified('password')){
+        user.password = await bcryptjs.hash(user.password,8);
+    }
+    console.log('just before saving')
+    next() ; // if we next call next we go the to actual flow of our application 
+})
+
+const User = mongoose.model('User',userSchema);
 
 module.exports = User;
