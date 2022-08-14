@@ -61,6 +61,12 @@ userSchema.methods.generateAuthToken = async function (){
     return token;
 }
 
+userSchema.methods.getPublicData  = async function(){
+    const user  = this || [];
+    const publicdata = ['name','email','age'];
+    const publicUser = user.filter(x=>publicdata.includes(x));
+    return publicUser;
+}
 
 // Middleware : Using the  Schema static object https://riptutorial.com/mongoose/example/10574/schema-statics
 

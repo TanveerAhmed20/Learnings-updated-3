@@ -3,7 +3,8 @@ import Home from "./routes/home/home.component";
 import { Routes, Route} from "react-router-dom";
 import Navigation from './routes/navigation/navigation.component'
 import Authentication from "./routes/authentication/Authentication.component";
-const Shop = () => <div> This is Shop Page </div>;
+// const Shop = () => <div> This is Shop Page </div>;
+import Shop from './routes/shop/shop.component'
 
 // index sets the element  = <Home/> as the base component if nothing is given in the url : i.e localhost :3000
 const App = () => {

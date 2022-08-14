@@ -131,9 +131,9 @@ router.post('/users/logoutAll',auth,async(req,res)=>{
 
 router.post('/users/login',async (req,res)=>{
   try{
-    const user = await User.findByCredentials(req.body.email,req.body.password);
-    const token = await user.generateAuthToken(); 
-    res.status(200).send({user,token});
+      const user = await User.findByCredentials(req.body.email,req.body.password);
+      const token = await user.generateAuthToken(); 
+      res.status(200).send({user,token});//here
   }
   catch(err){
     res.status(404).send(err.message);
@@ -141,7 +141,6 @@ router.post('/users/login',async (req,res)=>{
 })
 
 router.post('/users/signup',async (req,res)=>{
-  //  res.send('hello')
     const user = new User(req.body);
     try{
       await user.save() ; 
@@ -149,7 +148,6 @@ router.post('/users/signup',async (req,res)=>{
     catch(err){
       return res.status(404).send(err);
     }
-
     const token = await user.generateAuthToken();
     res.status(200).send({user,token});
 })
@@ -159,5 +157,18 @@ router.post('/users/signup',async (req,res)=>{
 //2 send bck both the token and the user
 // 3. create a new user from postman and confirm the token is there
 
+
+// delete authenticated user 
+
+router.delete('/users/me',auth,async (req,res)=>{
+  try{
+    await req.user.remove() ; // acheives same result as findOneAnd
+    res.status(200).send(req.user);
+
+  }
+  catch(er){
+    res.status(500).send(er.message);
+  }
+})
 
 module.exports = router;
