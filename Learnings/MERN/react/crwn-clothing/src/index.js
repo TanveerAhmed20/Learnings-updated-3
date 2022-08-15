@@ -5,14 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router} from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
-
+import{ProductsProvider} from './contexts/products.context'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <UserProvider> 
         {/* evrything inside the context is able to access the values*/}
-      <App />
+      <ProductsProvider>
+        <App />
+      </ProductsProvider>
       </UserProvider>
     </Router>
   </React.StrictMode>

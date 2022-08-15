@@ -1,13 +1,18 @@
 import { Link, Outlet} from "react-router-dom";
-import React,{useContext} from "react";
+import React,{useContext,useState} from "react";
 import { ReactComponent as Crwn } from "../../assets/crown.svg";
 // import {Fragment} from 'react'  this also works
 import './navigation.styles.scss'
 import {UserContext} from '../../contexts/user.context'
 import {signOutUser} from '../../utils/firebase/firebase.utils.js'
-
+import CardIcon from '../../components/cart-icon/cart-icon.component'
+import CardDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 export default function Navigation() {
-
+  const [toggle,setToggle] = useState(false);
+  const toggleChange = ()=>{
+      setToggle(!toggle);
+      console.log('toggle changed')
+  }
   const {currentUser,setCurrentUser} = useContext(UserContext);
   const onClickHandler = async ()=>{
   await signOutUser();
@@ -32,9 +37,11 @@ export default function Navigation() {
             SIGN-IN
           </Link> )
           }
+          <CardIcon toggle = {toggleChange}/>
         </div>
+        {toggle && <CardDropdown toggle = {toggleChange}/>}
       </div>
-      <Outlet />
+      <Outlet/>
     </React.Fragment>
   );
 }
