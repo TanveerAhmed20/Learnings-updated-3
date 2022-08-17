@@ -14,12 +14,29 @@ const addCartItem = (cartItems,productToAdd,totalItems,setTotalItems)=>{
   
 }
 
+const deleteCartItem = (cartItems,productToAdd,totalItems,setTotalItems)=>{
+    // console.log('addCartItems called')
+    // console.log(totalItems)
+    if(totalItems==0) return ;
+    setTotalItems(totalItems-1)
+
+    const index = cartItems.findIndex((x)=>x.id ===productToAdd.id);
+    // console.log(index)
+    if(index!==-1){
+        if(cartItems[index].quantity==1) return [...cartItems.slice(0,index),...cartItems.slice(index+1)]
+        return  [...cartItems.slice(0,index),{...cartItems[index],quantity:cartItems[index].quantity-1},...cartItems.slice(index+1)]
+    }
+  
+}
+
+
 
 export const CartContext = createContext({
         cartItems:[],
         totalItems:0,
         setCartItems :()=>null,
-        addItemToCart:()=>null
+        addItemToCart:()=>null,
+        decrementFromCart:()=>null
 })
 
 export const CartProvider = ({children})=>{
@@ -30,6 +47,9 @@ export const CartProvider = ({children})=>{
         setCartItems(addCartItem(cartItems,product,totalItems,setTotalItems));
         // console.log(cartItems)
     }
-    const value = {cartItems,totalItems,addItemToCart};
+    const decrementFromCart = (product) => {
+        setCartItems(deleteCartItem(cartItems,product,totalItems,setTotalItems))
+    }
+    const value = {cartItems,totalItems,addItemToCart,decrementFromCart};
     return <CartContext.Provider value ={value}>{children}</CartContext.Provider>
 }

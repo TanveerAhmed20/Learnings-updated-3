@@ -13,6 +13,7 @@ export default function Navigation() {
       setToggle(!toggle);
       console.log('toggle changed')
   }
+  // console.log("LOCATION:"+window.location)
   const {currentUser,setCurrentUser} = useContext(UserContext);
   const onClickHandler = async ()=>{
   await signOutUser();
@@ -39,7 +40,7 @@ export default function Navigation() {
           }
           <CardIcon toggle = {toggleChange}/>
         </div>
-        {toggle && <CardDropdown toggle = {toggleChange}/>}
+        {toggle  && <CardDropdown toggle = {toggleChange}/>}
       </div>
       <Outlet/>
     </React.Fragment>

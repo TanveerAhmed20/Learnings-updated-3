@@ -5,7 +5,7 @@ import Navigation from './routes/navigation/navigation.component'
 import Authentication from "./routes/authentication/Authentication.component";
 // const Shop = () => <div> This is Shop Page </div>;
 import Shop from './routes/shop/shop.component'
-
+import Checkout from "./routes/checkout/checkout.component";
 // index sets the element  = <Home/> as the base component if nothing is given in the url : i.e localhost :3000
 const App = () => {
   return (
@@ -14,6 +14,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop/>} />
         <Route path="auth" element={<Authentication/>} />
+        <Route path="checkout" element={<Checkout/>} />
       </Route>
     </Routes>
   );
