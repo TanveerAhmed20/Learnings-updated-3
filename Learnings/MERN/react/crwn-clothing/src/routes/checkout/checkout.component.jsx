@@ -3,7 +3,7 @@ import CheckoutItem from "../../components/checkout-item/checkout-item.component
 import { CartContext } from "../../contexts/cart.context";
 import "./checkout.styles.scss";
 const Checkout = () => {
-  const { cartItems, addItemToCart, decrementFromCart } =
+  const { cartItems, addItemToCart, decrementFromCart ,clearItemFromCart} =
     useContext(CartContext);
   return (
     <div className="checkout-container">
@@ -21,7 +21,7 @@ const Checkout = () => {
           <span>price</span>
         </div>
         <div className="header-block">
-          <span>Remove</span>
+          <span >Remove</span>
         </div>
       </div>
       {cartItems.length == 0 ? (
