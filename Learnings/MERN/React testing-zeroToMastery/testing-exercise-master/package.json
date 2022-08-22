@@ -1,0 +1,19 @@
+{
+  "name": "testing-exercise-master",
+  "version": "1.0.0",
+  "description": "testing with Jest",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.3",
+    "node-fetch": "^2.0.0"
+  },
+  "devDependencies": {
+    "chalk": "4.1.2"
+  }
+}
