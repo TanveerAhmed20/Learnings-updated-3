@@ -14,6 +14,15 @@ const taskSchema = new mongoose.Schema(
       default: false,
       required: false,
     },
+    owner:{
+      type:mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref:'User'
+    }
+
+  },
+  {
+    timestamps:true
   },
   { versionKey: false }
 );
@@ -22,6 +31,7 @@ const taskSchema = new mongoose.Schema(
 // post : after , pre : before schema model is created . 
 taskSchema.pre('save',async function(next){
     const task = this; // gives a reference to the document before it's save 
+    task.toJSON({virtuals:true})
     if(task.isModified('description')){
        console.log("description updatd")
     }
@@ -29,7 +39,7 @@ taskSchema.pre('save',async function(next){
     next() ; // if we next call next we go the to actual flow of our application 
 })
 //creating the model 
-const Task = mongoose.model("Task",taskSchema);
+ const Task = mongoose.model("Task",taskSchema);
 
 
 const newtask1 = new Task({

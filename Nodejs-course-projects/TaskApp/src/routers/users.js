@@ -15,7 +15,7 @@ router.get("/users", auth, async (req, res) => {
 
 router.get('/users/me',auth,async (req,res)=>{
   // res.send('hello')
-  res.send(req.user)
+  res.send({user:req.user,token:req.token})
 })
 
 
@@ -41,6 +41,7 @@ router.post("/users", async (req, res) => {
     res.status(404).send(err);
   }
 
+  // below code can be simplified using await keyword
   // user
   //   .save()
   //   .then(() => {
@@ -50,6 +51,28 @@ router.post("/users", async (req, res) => {
   //   res.status(400).send(err);
   //   });
 });
+
+
+//goal : refactor the update profile route 
+//1 . update the url to /users/me 
+//2 . add the authentication middleware into the mix 
+// 3. use the existing user document instated of fetching via param id 
+//4 test your work in postman
+
+router.patch('/users/me',auth,async (req,res)=>{
+  const updates = Object.keys(req.body);
+  console.log('updates')
+  console.log(updates);
+  const validupdates = ['name','email','password','age'];
+  const isValidOperation = updates.every(element=>validupdates.includes(element));
+  if (!isValidOperation) return res.status(400).send("invalid update request");
+  const user  = req.user;
+   updates.forEach(x=>{
+     user[x] = req.body[x];
+   })         
+  await user.save();  
+  return res.status(200).send({message:'Password changed',token:req.token});
+})
 
 router.patch("/users/:id", async (req, res) => {
   const updates = Object.keys(req.body);
@@ -81,32 +104,32 @@ router.patch("/users/:id", async (req, res) => {
 
     await user.save();
 
-    res.send(user);
+    return res.send(user);
   } catch (err) {
-    res.status(400).send(err);
+    return res.status(400).send(err);
   }
 });
 
-router.delete("/users/:id", async (req, res) => {
-  try {
-    const user = await User.findOneAndDelete({ _id: req.params.id });
-    // console.log(user);
-    if (!user) return res.status(404).send("user not found");
-    res.send(user);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+// router.delete("/users/:id", async (req, res) => {
+//   try {
+//     const user = await User.findOneAndDelete({ _id: req.params.id });
+//     // console.log(user);
+//     if (!user) return res.status(404).send("user not found");
+//     return res.send(user);
+//   } catch (err) {
+//     return res.status(400).send(err);
+//   }
+// });
 
 router.post('/users/logout',auth,async (req,res)=>{
   try{
     req.user.tokens = req.user.tokens.filter(tokenElement=>tokenElement.token!=req.token)
     await req.user.save() ; 
 
-    res.status(200).send(req.user);
+    return res.status(200).send({user:req.user,token:''});
   }
   catch(e){
-    res.status(404).send(e.message);
+    return res.status(404).send(e.message);
   }
 })
 
@@ -122,21 +145,35 @@ router.post('/users/logoutAll',auth,async(req,res)=>{
   try{
     req.user.tokens = [];
     await req.user.save();
-    res.status(200).send(req.user);
+    return res.status(200).send(req.user);
   }
    catch(e){
-    res.status(400).send(e.message)
+    return  res.status(400).send(e.message)
    }
 })
 
 router.post('/users/login',async (req,res)=>{
   try{
+
       const user = await User.findByCredentials(req.body.email,req.body.password);
+      // console.log(user)
+      user.getPublicData();
       const token = await user.generateAuthToken(); 
-      res.status(200).send({user,token});//here
-  }
+      console.log('inside user login api')
+      const data = await user.getPublicData();
+
+      /// IMPORTANT NOTE : user.getPublicDate returns a promise so make sure to get data sepeartely 
+      // i.e u cannot get data by directly doing user.getPublicData() as this returns a promise 
+      //so make sure to use await or use then() to resolve then promise 
+     
+     
+     console.log(data);
+      // return res.status(200).send({user:data,token});
+  
+      return res.status(200).send({user:data,token});
+    }
   catch(err){
-    res.status(404).send(err.message);
+    return res.status(404).send(err.message);
   }
 })
 
@@ -149,7 +186,7 @@ router.post('/users/signup',async (req,res)=>{
       return res.status(404).send(err);
     }
     const token = await user.generateAuthToken();
-    res.status(200).send({user,token});
+    return res.status(200).send({user,token});
 })
 
 // Goal: move signnup send ck auth token 
@@ -159,12 +196,13 @@ router.post('/users/signup',async (req,res)=>{
 
 
 // delete authenticated user 
-
+const Task = require('../models/Task')
 router.delete('/users/me',auth,async (req,res)=>{
+  console.log("hello")
   try{
-    await req.user.remove() ; // acheives same result as findOneAnd
-    res.status(200).send(req.user);
-
+    // await Task.deleteMany({owner:req.user._id}); // bette to use middleware .pre('remove')
+    await req.user.remove() ; // acheives same result as findOneAndDelete
+    return res.status(200).send({message:"success",token:''});
   }
   catch(er){
     res.status(500).send(er.message);

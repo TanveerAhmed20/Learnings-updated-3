@@ -68,3 +68,21 @@ app.listen(port, () => {
 //     }
 //   }
 // myfunction();
+
+
+// POPULATE METHOD : 
+
+
+// const main = async ()=>{
+//   // const task = await Task.findById('6309db2f182d8516f93b4ad7');
+//   // await task.populate('users').execPopulate();
+//   // console.log(task.);
+//   const user = await User.findOne({_id:'6309c8cb7d456f0503db9fa6'}).populate('tasks');
+
+//   console.log(user.tasks)
+
+//   const task = await Task.findById('6309db31182d8516f93b4ada');
+//   const tasks = await task.populate('owner');
+//   console.log(task.owner)
+// }
+// main();
