@@ -2,6 +2,7 @@ const User = require("../models/User");
 const express = require("express");
 const router = new express.Router();
 const auth = require('../middleware/auth');
+const sharp = require('sharp');
 
 router.get("/users", auth, async (req, res) => {
   console.log('inside GET users')
@@ -208,5 +209,87 @@ router.delete('/users/me',auth,async (req,res)=>{
     res.status(500).send(er.message);
   }
 })
+
+// GOAL : FILE UPLOADS 
+// 1. Add POST /users/me/avatar to user router 
+//2 . setup multer to store uploads in avatars directory 
+//  3. chose name avatar for the key when registering the middleware 
+// 3. send back a 200 response from route handler 
+// 5. test your work crate new task app request and upload image 
+const multer = require('multer');
+const upload = multer(
+  {
+    // dest:'images/users/avatar',//uncomment this if you are not using user file Buffer Schema
+    limits : {
+      fileSize: 1000000 // bytes - here it's set to 1000Kb or 1Mb
+    },
+    fileFilter(req,file,cb){
+        if(!file.originalname.match(/\.(jpg|jpeg|png)/)){
+          return cb(new Error('Please upload only image'))
+        }
+        cb(undefined,true); // cb is callback 
+    }
+  }
+)
+
+//custom middleware for file uplaod 
+
+const errorMiddleware = (req,res,next)=>{
+  throw new Error('From my middle ware')
+}
+// router.post('/users/me/avatar', errorMiddleware,(req,res)=>{
+//     return res.status(200).send('uploaded user profile pic')
+// },(error,req,res,next)=>{
+//    return res.status(400).send({error:error.message})
+// })
+
+
+router.post('/users/me/avatar',auth,  upload.single('avatar'),async (req,res)=>{
+  const buffer = await sharp(req.file.buffer).resize({width:250,height:250}).png().toBuffer();  
+
+  // req.user.avatar = req.file.buffer;
+  req.user.avatar = buffer;
+    await req.user.save() ;
+    // console.log(req.file.buffer) 
+
+      return res.status(200).send({message:'uploaded user profile pic',token:req.token})
+  },(error,req,res,next)=>{
+     return res.status(400).send({error:error.message})
+  })
+// serving  up files : 
+
+
+router.get('/users/:id/avatar',async (req,res)=>{
+  try{
+    const user  = await User.findById(req.params.id);
+    if(!user || !user.avatar){
+      throw new Error('user or avatar not found')
+    }
+    res.set('Content-Type','image/jpg')
+    return res.status(200).send(user.avatar)
+  }
+  catch(e){
+    return res.status(404).send({error:e.message})
+
+  }
+})
+
+
+
+//CHALLENGE : 
+// GOAL : Setup route to delete avatar
+// 1. setup DELETE /users/me/avatar
+//2 . Add authentication
+// 3. Set the field to undefined and save the user sending back a 200
+// 4. Test your work by creating new request for Task App in Postman
+
+router.delete('/users/me/avatar',auth,async (req,res)=>{
+   req.user.avatar = undefined;
+   await req.user.save();
+   return res.status(200).send({message:'successfully removed profile pic',token : req.token})
+})
+
+
+
 
 module.exports = router;

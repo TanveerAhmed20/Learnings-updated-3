@@ -49,6 +49,9 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    avatar: {
+      type:Buffer
+    }
   },
   {
     timestamps: true,
@@ -107,6 +110,7 @@ userSchema.methods.getPublicData = async function () {
   console.log(typeof userObject);
   delete userObject.password;
   delete userObject.tokens;
+  delete userObject.avatar;
   return userObject;
 };
 

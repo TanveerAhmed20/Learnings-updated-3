@@ -1,0 +1,7 @@
+joi  : validate incoming request body
+bcrypt : convert string into hash code ( note bcrypt is depreceated , use bcryptjs)
+multer : used to proces and upload and store files
+supertest : used to do testing by creating fake requests 
+sharp : RESIZING IMAGES TO SEND BACK FROM SERVER
+nodemailer: to send email ;
+sendgrid : to send email

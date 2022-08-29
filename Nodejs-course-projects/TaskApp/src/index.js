@@ -86,3 +86,24 @@ app.listen(port, () => {
 //   console.log(task.owner)
 // }
 // main();
+
+
+// MULTER 
+const multer = require('multer');
+const upload = multer(
+  {
+    dest:'images',
+    limits : {
+      fileSize: 1000000 // bytes - here it's set to 1000Kb or 1Mb
+    },
+    fileFilter(req,file,cb){
+        if(!file.originalname.match(/\.(doc|docs|docx|pdf)/)){
+          return cb(new Error('Please upload a pdf/doc/docx'))
+        }
+        cb(undefined,true); // cb is callback 
+    }
+  }
+)
+app.post('/upload',upload.single('upload'),(req,res)=>{
+  res.status(200).send('uploaded');
+})
