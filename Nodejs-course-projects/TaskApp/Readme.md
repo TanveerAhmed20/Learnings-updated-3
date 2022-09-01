@@ -101,13 +101,23 @@ A json web token consist of three things :
 3. secretkey
 
 ```javascript
-  const token= jwt.sign({_id:'abc123'},'thisismynewcourse')
+  const token= jwt.sign({_id:'abc123'},JWT_SECRET)
 ```
 
 Good visuallizer for Base64 decoding 
 [Link](https://www.base64decode.org/)
 
 
+
+
+SETTING UP ENVIRONMENTS
+https://www.codegrepper.com/code-examples/javascript/dotenv+config+path
+
+
 ### Note:  module.exports == default export and export = named export
 [Link](https://www.geeksforgeeks.org/difference-between-module-exports-and-exports-in-node-js/)
 
+
+
+[HOW TO RUN COMMANDS PARALLELY OR SEQUENTIALLY](https://stackoverflow.com/questions/30950032/how-can-i-run-multiple-npm-scripts-in-parallel)
+'

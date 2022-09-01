@@ -1,3 +1,5 @@
+
+const {sendCancellationEmail,sendForgotPassword,sendWelcomeEmail} = require('../emails/account');
 const User = require("../models/User");
 const express = require("express");
 const router = new express.Router();
@@ -181,10 +183,11 @@ router.post('/users/login',async (req,res)=>{
 router.post('/users/signup',async (req,res)=>{
     const user = new User(req.body);
     try{
-      await user.save() ; 
+      await user.save() ;
+      sendWelcomeEmail(req.body.email,req.body.name); 
     }
     catch(err){
-      return res.status(404).send(err);
+      return res.status(404).send(err.message);
     }
     const token = await user.generateAuthToken();
     return res.status(200).send({user,token});
@@ -194,15 +197,15 @@ router.post('/users/signup',async (req,res)=>{
 // 1. generate a token for the saved user 
 //2 send bck both the token and the user
 // 3. create a new user from postman and confirm the token is there
-
-
 // delete authenticated user 
 const Task = require('../models/Task')
 router.delete('/users/me',auth,async (req,res)=>{
   console.log("hello")
   try{
     // await Task.deleteMany({owner:req.user._id}); // bette to use middleware .pre('remove')
+    
     await req.user.remove() ; // acheives same result as findOneAndDelete
+    sendCancellationEmail(req.user.email,req.user.name);
     return res.status(200).send({message:"success",token:''});
   }
   catch(er){
@@ -217,6 +220,7 @@ router.delete('/users/me',auth,async (req,res)=>{
 // 3. send back a 200 response from route handler 
 // 5. test your work crate new task app request and upload image 
 const multer = require('multer');
+const { findOne } = require('../models/Task');
 const upload = multer(
   {
     // dest:'images/users/avatar',//uncomment this if you are not using user file Buffer Schema
@@ -290,6 +294,22 @@ router.delete('/users/me/avatar',auth,async (req,res)=>{
 })
 
 
+//forgot password 
 
+router.post('/users/forgotPassword',async(req,res)=>{
+  const email = req.body.email
+  console.log(email)
+  try{
+      const user = await User.findOne({email:email},{password:1});
+
+      // console.log(findPassword);
+      if(!user) throw new Error('User not found')
+      sendForgotPassword(email,user.password)
+      return res.status(200).send({message:'Password sent to email',token:""})
+  }
+  catch(err){
+    return res.status(404).send(err.message)
+  }
+})
 
 module.exports = router;

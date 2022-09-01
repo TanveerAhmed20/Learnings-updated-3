@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://127.0.0.1:27017/tsk-manager-api');
+const path = require('path')
+// console.log('inside mongoose')
+// console.log(path.resolve(__dirname, '../dev.env'))
+require('dotenv').config({ path: path.resolve(__dirname,`../../${process.env.NODE_ENV}.env`) });
+// console.log(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URL);
 
 //User is a constructor function
 

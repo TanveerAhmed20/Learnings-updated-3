@@ -1,0 +1,41 @@
+to directly use NODE_ENV
+
+use app.use('env') inside the index.js where ur server listener is located 
+
+to change environments : export NODE_ENV=development  or export NODE_ENV=production
+
+u can directly user process.env.NODE_ENV anywhere
+
+
+GOOD RESOURCE TO run commands in parallel or in sequence 
+https://stackoverflow.com/questions/30950032/how-can-i-run-multiple-npm-scripts-in-parallel
+
+&& will run your scripts sequentially while & will run them in parallel. 
+
+"dev": "npm run start-watch && npm run wp-server" runs in sequence 
+"dev": "npm run start-watch & npm run wp-server" runs in parallel
+
+NODE DOTENV
+------------
+require('dotenv').config()
+
+
+NODEJS DOTENV PATH HOW TO SET 
+------------------------------
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') }); 
+
+
+IN PACKAGE JSON
+------------------
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "prestart:dev": "npm run build",
+    "prestart:test": "npm run build",
+    "start": "node -r dotenv/config . dotenv_config_path=./.env",
+    "start:dev": "node -r dotenv/config . dotenv_config_path=./.env.dev",
+    "start:test": "node -r dotenv/config . dotenv_config_path=./.env.test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
