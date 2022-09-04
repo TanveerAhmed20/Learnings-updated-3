@@ -1,0 +1,21 @@
+Mongo vs Postgres is a weird question to ask. They fit different niches. Here are some key differences:
+
+* When PostgreSQL says that something has been saved, it really has landed on hard drive. 
+Mongo instead queues it up to be "saved eventually" meaning that you can expect that while 99.9% of the data will go through fine, that remaining 0.1% might be gone (lack of hard drive space, some kind of OS bug, power shutdown). Not important if you are making a comment system on Reddit, will destroy your business if you try to store financial records in it.
+
+* No real support for foreign keys for Mongo, at least not on a database layer. 
+Example - you might decide that it should be impossible to delete a customer if there are orders still belonging to them. On Postgres it's a child's play but on Mongo you need to implement it inside your application stack (which is waaaay more error prone as this check is bypassed if you work with database directly).
+
+* PostgreSQL is (assuming a single database server) generally faster if you need to find a dataset that requires using several different tables. As an example - "find Orders made between 11.2010 - 11.2014 by Customers that have used reddit registration PromoCode and their Shipping was done by USPS". 4 different tables (customers, promo_codes, shippings, orders).
+
+* On the other hand MongoDB has better support for multi-server infrastructure, at least when it comes to simultaneous writes and sharding (splitting your database in such a way that for instance customers with names from A to M are on one server and from N to Z on another).
+
+Ultimately very often the answer is "to use both". That's the case for Reddit for instance (although instead of Mongo they are using Cassandra, it's used for upvoting/downvoting system - so super write heavy operations but it's fine if some don't go through, it's not vital).
+
+But then I hear that JS Developers should focus on ONE stack, so either MERN or PERN.
+
+Ehh, that's a pile of bullshit. I can tell you that at my work we use 3 different databases - PostgreSQL, Elasticsearch and Redis. Simply because it gives us best results and ticks all business requirements. You will however need to learn SQL at some point in your life, that's for sure.
+
+Choice of a database is dictated by your requirement towards an application. It is true that it should be kept as simple as possible (onboarding new employees becomes significantly harder with every added component) and we generally ask "is it worth to put X in and will costs of maintaining it beat trying to use our current stack in the next 5 years". But it's not a competition of "what is better" but "what kind of application am I building".
+
+That being said, I am a firm believer of "learn SQL before noSQL, if something specifically advertises itself as noSQL then find out what that really means".

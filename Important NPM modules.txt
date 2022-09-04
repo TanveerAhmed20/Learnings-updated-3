@@ -1,0 +1,31 @@
+joi  : validate incoming request body
+bcrypt : convert string into hash code ( note bcrypt is depreceated , use bcryptjs)
+multer : used to proces and upload and store files
+supertest : used to do testing by creating fake requests 
+sharp : RESIZING IMAGES TO SEND BACK FROM SERVER
+nodemailer: to send email ;
+sendgrid : to send email
+dotenv : used to setup environment variables ( more popular)
+env-cmd : used to setup environment variables ( less popular ) ;
+enzyme : used to test react applications  (doesnt support react v17 and above)
+
+
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js --ignore tests",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "npm run build"
+  },
+
+concurrently: 
+aws-sdk: 
+body-parser: used for parsing  the body of post requrest that come into the application 
+cookie-session: middleware that handles authentication and maintenance of sessions for incoming
+migrate-mongoose: 
+passport : used for authentication to handle oauth for google service
+passport-google-oauth20 : 
+path-parser : 
+puppeteer : 
+redis : used for caching.
