@@ -1,0 +1,18 @@
+<div class="courses-container">
+	<div class="course">
+		<div class="course-preview">
+			<h6 class = "heading">MERN STACK</h6>
+			<hr/>
+			<h6 class = "info">TRAINING-ID :  <span> 1002</span></h6>
+			<h6 class = "info">START DATE :<span>12-2-2022</span></h6>
+			<h6 class = "info">END DATE : <span> 30-2-2022</span></h6>
+		</div>
+		<div class="course-info">
+			<h6><span>DESCRIPTION</span></h6>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<h6 ><span>TECH STACK : </span>  Mongo DB, express , node , react </h6> 
+			<button class="btn">Delete</button>
+			<button class="btn-edit">Edit</button>
+		</div>
+	</div>
+</div>
