@@ -216,3 +216,58 @@ Ans:  Storage gateway and amazon s3 glacier
 **ECS** - Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster. This is not a fully managed service and you can manage the underlying servers yourself.
 
 **Fargate** - AWS Fargate is a serverless compute engine for containers. It works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate makes it easy for you to focus on building your applications. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design. With Fargate, you do not have access to the underlying servers,
+
+
+
+
+
+--- 
+
+##### serverless : 
+lambda
+fargate
+
+---
+
+AWS Shield Advanced provides enhanced protections for your applications running on protected Amazon EC2, Elastic Load Balancing (ELB), Amazon CloudFront, AWS Global Accelerator, and Route 53 
+
+
+---
+##### Encryption Automatically enabled: 
+- CloudTrail Logs
+- S3 Glacier
+- Storage Gateway
+
+
+
+---
+The following can be reserved 
+ec2 
+rds
+dynamodb
+
+
+--- 
+##### COST OPTIMIZER VS COST EXPLORER
+[reference](https://www.linkedin.com/pulse/aws-compute-optimizer-cost-explorer-william-doom/)
+
+---
+#### VPC endpoint gateways : 
+
+--- 
+
+#### CONFIG VS CLOUDTRAIL 
+
+CloudTrail : Provides governance, compliance and audit for your AWS Account
+Config : Helps with auditing and recording compliance of your AWS resources
+
+
+---
+#### Use Amazon S3 Block Public Access to ensure that all S3 resources stay private
+
+The Amazon S3 Block Public Access feature provides settings for access points, buckets, and accounts to help you manage public access to Amazon S3 resources. By default, new buckets, access points, and objects don't allow public access. However, users can modify bucket policies, access point policies, or object permissions to allow public access. S3 Block Public Access settings override these policies and permissions so that you can limit public access to these resources.
+
+When Amazon S3 receives a request to access a bucket or an object, it determines whether the bucket or the bucket owner's account has a block public access setting applied. If the request was made through an access point, Amazon S3 also checks for block public access settings for the access point. If there is an existing block public access setting that prohibits the requested access, Amazon S3 rejects the request.
+
+
+
