@@ -216,3 +216,36 @@ Ans:  Storage gateway and amazon s3 glacier
 **ECS** - Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster. This is not a fully managed service and you can manage the underlying servers yourself.
 
 **Fargate** - AWS Fargate is a serverless compute engine for containers. It works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). Fargate makes it easy for you to focus on building your applications. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design. With Fargate, you do not have access to the underlying servers,
+
+
+
+---
+
+Some of the services you can reserve include: EC2, DynamoDB, ElastiCache, RDS, and RedShift.
+
+---
+AWS SYSTEMS MANAGER service allows an organization to view operational data from multiple AWS services through a unified user interface and automate operational tasks
+
+---
+
+#### AWS CONFIG WITH RESOURCE TYPE
+
+ track resource inventory and configuration history for the purpose of security and regulatory compliance
+---
+
+
+#### Pillar 
+
+Performance Efficiency Pillar - The performance efficiency pillar focuses on using IT and computing resources efficiently. Key topics include selecting the right resource types and sizes based on workload requirements, monitoring performance, and making informed decisions to maintain efficiency as business needs evolve.
+
+Performance Efficiency uses the following design principles to help achieve and maintain efficient workloads in the cloud: Democratize advanced technologies, Go global in minutes, Use serverless architectures, Experiment more often and Consider mechanical sympathy.
+
+More information on the Design principles of the Performance Efficiency pillar:  via - https://d1.awsstatic.com/whitepapers/architecture/AWS-Performance-Efficiency-Pillar.pdf
+
+Incorrect options:
+
+Operational Excellence Pillar - The operational excellence pillar focuses on running and monitoring systems to deliver business value, and continually improving processes and procedures. Key topics include automating changes, responding to events, and defining standards to manage daily operations.
+
+Cost Optimization Pillar - The cost optimization pillar focuses on avoiding unnecessary costs. Key topics include understanding and controlling where the money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over time, and scaling to meet business needs without overspending.
+
+Reliability Pillar - The reliability pillar focuses on ensuring a workload performs its intended function correctly and consistently when it’s expected to. A resilient workload quickly recovers from failures to meet business and customer demand. Key topics include distributed system design, recovery planning, and how to handle change.
