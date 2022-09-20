@@ -219,33 +219,55 @@ Ans:  Storage gateway and amazon s3 glacier
 
 
 
+
+
+--- 
+
+##### serverless : 
+lambda
+fargate
+
 ---
 
-Some of the services you can reserve include: EC2, DynamoDB, ElastiCache, RDS, and RedShift.
+AWS Shield Advanced provides enhanced protections for your applications running on protected Amazon EC2, Elastic Load Balancing (ELB), Amazon CloudFront, AWS Global Accelerator, and Route 53 
+
 
 ---
-AWS SYSTEMS MANAGER service allows an organization to view operational data from multiple AWS services through a unified user interface and automate operational tasks
+##### Encryption Automatically enabled: 
+- CloudTrail Logs
+- S3 Glacier
+- Storage Gateway
+
+
 
 ---
+The following can be reserved 
+ec2 
+rds
+dynamodb
 
-#### AWS CONFIG WITH RESOURCE TYPE
 
- track resource inventory and configuration history for the purpose of security and regulatory compliance
+--- 
+##### COST OPTIMIZER VS COST EXPLORER
+[reference](https://www.linkedin.com/pulse/aws-compute-optimizer-cost-explorer-william-doom/)
+
 ---
+#### VPC endpoint gateways : 
+
+--- 
+
+#### CONFIG VS CLOUDTRAIL 
+
+CloudTrail : Provides governance, compliance and audit for your AWS Account
+Config : Helps with auditing and recording compliance of your AWS resources
 
 
-#### Pillar 
+---
+#### Use Amazon S3 Block Public Access to ensure that all S3 resources stay private
 
-Performance Efficiency Pillar - The performance efficiency pillar focuses on using IT and computing resources efficiently. Key topics include selecting the right resource types and sizes based on workload requirements, monitoring performance, and making informed decisions to maintain efficiency as business needs evolve.
+The Amazon S3 Block Public Access feature provides settings for access points, buckets, and accounts to help you manage public access to Amazon S3 resources. By default, new buckets, access points, and objects don't allow public access. However, users can modify bucket policies, access point policies, or object permissions to allow public access. S3 Block Public Access settings override these policies and permissions so that you can limit public access to these resources.
 
-Performance Efficiency uses the following design principles to help achieve and maintain efficient workloads in the cloud: Democratize advanced technologies, Go global in minutes, Use serverless architectures, Experiment more often and Consider mechanical sympathy.
+When Amazon S3 receives a request to access a bucket or an object, it determines whether the bucket or the bucket owner's account has a block public access setting applied. If the request was made through an access point, Amazon S3 also checks for block public access settings for the access point. If there is an existing block public access setting that prohibits the requested access, Amazon S3 rejects the request.
 
-More information on the Design principles of the Performance Efficiency pillar:  via - https://d1.awsstatic.com/whitepapers/architecture/AWS-Performance-Efficiency-Pillar.pdf
 
-Incorrect options:
 
-Operational Excellence Pillar - The operational excellence pillar focuses on running and monitoring systems to deliver business value, and continually improving processes and procedures. Key topics include automating changes, responding to events, and defining standards to manage daily operations.
-
-Cost Optimization Pillar - The cost optimization pillar focuses on avoiding unnecessary costs. Key topics include understanding and controlling where the money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over time, and scaling to meet business needs without overspending.
-
-Reliability Pillar - The reliability pillar focuses on ensuring a workload performs its intended function correctly and consistently when it’s expected to. A resilient workload quickly recovers from failures to meet business and customer demand. Key topics include distributed system design, recovery planning, and how to handle change.
